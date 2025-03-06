@@ -1,6 +1,6 @@
-require_relative './regex_table'
+require_relative './extract_nulls_from_table'
 require_relative './file_handling'
-require_relative './generated_data'
+require_relative './data_generator'
 require_relative './result'
 
 require 'minitest/autorun'

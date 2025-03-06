@@ -2,9 +2,10 @@ class Result
   attr_reader :data
 
   def initialize
+    raise "Provide both files or none" if [ARGV[0].nil?, ARGV[1].nil?].one?
     @origin = FileHandling.new(ARGV[0] || :origin)
     @expected = FileHandling.new(ARGV[1] || :expected)
-    @data = GeneratedData.new
+    @data = DataGenerator.new
   end
 
   def actual
@@ -21,7 +22,6 @@ class Result
     if @expected.file_data?
       @expected.file_data
     else
-      data.make!
       @expected.write_to_file(data.for_expected)
       @expected.file_data
     end

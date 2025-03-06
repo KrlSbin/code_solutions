@@ -5,11 +5,6 @@ csv files are automatically generated
 ruby regex_table_minitest.rb
 ```
 
-Provide file with NULL contained rows 
-```
-ruby regex_table_minitest.rb origin.csv
-```
-
 Provide both files
 ```
 ruby regex_table_minitest.rb origin.csv expected.csv
@@ -48,4 +43,9 @@ id,name,age,score
 16,Cdix,14,35.86
 18,Klmn,85,92.43
 19,Ghjk,2,93.2
+```
+
+If you need to filter your file from NULL values
+```
+ruby extract_nulls_from_file.rb <filename.csv>
 ```

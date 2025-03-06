@@ -1,4 +1,4 @@
-class GeneratedData
+class DataGenerator
   module CONST
     NOT_CAPTURED_NULLS = %w(null Null NUll NULl nULL nuLL nulL NULLIFY ANNULL)
     CAPTURED_NULL = 'NULL'
@@ -34,18 +34,19 @@ class GeneratedData
   end
 
   def generate_initial_arr!
-    @initial_arr ||= ('a'..'z').to_a.combination(4).map { |el| el.join.capitalize }
-                               .push(*CONST::NOT_CAPTURED_NULLS * 100)
-                               .shuffle
-                               .map
-                               .with_index do |el, i|
-      [
-        i + 1,
-        el,
-        (rand() * 100).to_i,
-        (rand() * 100).round(2)
-      ]
-    end
+    @initial_arr ||=
+      begin
+        temp_names = (generate_names + CONST::NOT_CAPTURED_NULLS * 100).shuffle
+
+        temp_names.map.with_index do |name, index|
+          [
+            index + 1,
+            name,
+            generate_ages,
+            generate_scores
+          ]
+        end
+      end
   end
 
   def file_header
@@ -54,5 +55,17 @@ class GeneratedData
 
   def file_body(arr)
     arr.map { |el| el.join(',') }.join("\n").to_s
+  end
+
+  def generate_names
+    @generated_names ||= ('a'..'z').to_a.combination(4).map(&:join)
+  end
+
+  def generate_ages
+    rand(100)
+  end
+
+  def generate_scores
+    (rand * 100).round(2)
   end
 end
