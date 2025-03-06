@@ -2,7 +2,6 @@ require_relative './regex_table'
 require_relative './file_handling'
 require_relative './generated_data'
 require_relative './result'
-require_relative './regex_table'
 
 require 'minitest/autorun'
 
@@ -12,7 +11,8 @@ class Prepare
 
     def expected; result.expected; end
 
-    private def result; @result ||= Result.new; end
+    private def result; @result ||= Result.new;
+    end
   end
 end
 
