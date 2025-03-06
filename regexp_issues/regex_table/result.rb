@@ -1,6 +1,6 @@
 class Result
-
   attr_reader :data
+
   def initialize
     @origin = FileHandling.new(ARGV[0] || :origin)
     @expected = FileHandling.new(ARGV[1] || :expected)

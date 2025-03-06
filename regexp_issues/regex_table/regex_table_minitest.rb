@@ -8,17 +8,11 @@ require 'minitest/autorun'
 
 class Prepare
   class << self
-    def actual
-      result.actual;
-    end
+    def actual; result.actual; end
 
-    def expected
-      result.expected;
-    end
+    def expected; result.expected; end
 
-    private def result
-      @result ||= Result.new;
-    end
+    private def result; @result ||= Result.new; end
   end
 end
 
